@@ -1,5 +1,5 @@
 module.exports = (app, databaseService) => {
-  app.get("/", function (req, res) {
+  app.get("/api/", function (req, res) {
     res.json({ mensaje: "¡Hola Mundo!" });
   });
 
