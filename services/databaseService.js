@@ -10,7 +10,7 @@ const databaseService = () => {
     },
   });
 
-  const tabla = "usuarios";
+  const tabla = "USUARIO";
   const crearUsuario = ({ id, username, password, ingresos, gasto }) => {
     return knex(tabla).insert({
       id: id,
@@ -22,7 +22,11 @@ const databaseService = () => {
   };
 
   const usuarios = () => {
-    return knex(tabla).select();
+    return knex(tabla).column('email as Email', 'username as Username', 'ingreso as Ingresos').select();
+  };
+
+  const usuariosByUsername = ({username}) => {
+    return knex(tabla).column('email as Email', 'username as Username').where('username', username).select();
   };
 
   const borrarUsuario = ({id}) => {
@@ -32,7 +36,8 @@ const databaseService = () => {
   return {
     crearUsuario,
     usuarios,
-    borrarUsuario
+    borrarUsuario,
+    usuariosByUsername
   };
 };
 

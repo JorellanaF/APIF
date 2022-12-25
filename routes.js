@@ -14,6 +14,18 @@ module.exports = (app, databaseService) => {
       });
   });
 
+  app.get("/usuario", function (req, res) {
+    const username = req.body;
+    databaseService
+      .usuariosByUsername(username)
+      .then((usuario) => {
+        res.json(usuario);
+      })
+      .catch((e) => {
+        res.status(500).json(e);
+      });
+  });
+
   app.post("/", function (req, res) {
     res.json({ mensaje: "Método post" });
   });
