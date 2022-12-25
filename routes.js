@@ -14,7 +14,8 @@ module.exports = (app, databaseService) => {
       });
   });
 
-  app.get("/usuario/:username", function (req, res) {
+  app.get("/usuario/:username", databaseService.usuariosByUsername);
+  /*app.get("/usuario/:username", function (req, res) {
     const username = req.params.username;
     databaseService
       .usuariosByUsername(username)
@@ -24,7 +25,7 @@ module.exports = (app, databaseService) => {
       .catch((e) => {
         res.status(500).json(e);
       });
-  });
+  });*/
 
   app.post("/", function (req, res) {
     res.json({ mensaje: "Método post" });

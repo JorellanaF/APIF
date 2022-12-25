@@ -22,22 +22,38 @@ const databaseService = () => {
   };
 
   const usuarios = () => {
-    return knex(tabla).column('email as Email', 'username as Username', 'ingreso as Ingresos').select();
+    return knex(tabla)
+      .column("email as Email", "username as Username", "ingreso as Ingresos")
+      .select();
   };
 
-  const usuariosByUsername = ({username}) => {
+  const usuariosByUsername = async (req, res) => {
+    const username = req.params.username;
+    console.log("--> " + username);
+    try {
+      const user = await knex(tabla)
+        .column("email as Email", "username as Username")
+        .where("username", username)
+        .select();
+      console.log(user);
+      return res.json(user);
+    } catch (e) {
+      return res.status(500).json(e);
+    }
+  };
+  /*const usuariosByUsername = ({username}) => {
     return knex(tabla).column('email as Email', 'username as Username').where('username', username).select();
-  };
+  };*/
 
-  const borrarUsuario = ({id}) => {
-    return knex(tabla).where('id', id).del();
-  }
+  const borrarUsuario = ({ id }) => {
+    return knex(tabla).where("id", id).del();
+  };
 
   return {
     crearUsuario,
     usuarios,
     borrarUsuario,
-    usuariosByUsername
+    usuariosByUsername,
   };
 };
 
