@@ -14,8 +14,8 @@ module.exports = (app, databaseService) => {
       });
   });
 
-  app.get("/usuario", function (req, res) {
-    const username = req.body;
+  app.get("/usuario/:username", function (req, res) {
+    const username = req.params.username;
     databaseService
       .usuariosByUsername(username)
       .then((usuario) => {
