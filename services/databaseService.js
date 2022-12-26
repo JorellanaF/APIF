@@ -36,7 +36,7 @@ const databaseService = () => {
         .where("username", username)
         .select();
       console.log(user);
-      return res.json(user);
+      return res.json(user[0]);
     } catch (e) {
       return res.status(500).json(e);
     }
