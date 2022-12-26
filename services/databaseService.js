@@ -32,7 +32,7 @@ const databaseService = () => {
     console.log("--> " + username);
     try {
       const user = await knex(tabla)
-        .column("email as Email", "username as Username")
+        .column("email as Email", "username as Username", "id_img_fk as Img")
         .where("username", username)
         .select();
       console.log(user);
