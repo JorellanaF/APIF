@@ -27,6 +27,8 @@ module.exports = (app, databaseService) => {
       });
   });*/
 
+  app.get("/usuario/:id", databaseService.imgById);
+
   app.post("/", function (req, res) {
     res.json({ mensaje: "Método post" });
   });

@@ -45,6 +45,21 @@ const databaseService = () => {
     return knex(tabla).column('email as Email', 'username as Username').where('username', username).select();
   };*/
 
+  const imgById = async (req, res) => {
+    const id = req.params.id;
+    console.log("--> " + id);
+    try {
+      const img = await knex(tabla)
+        .column("img as Img")
+        .where("id", id)
+        .select();
+      console.log(img);
+      return res.json(img[0]);
+    } catch (e) {
+      return res.status(500).json(e);
+    }
+  };
+
   const borrarUsuario = ({ id }) => {
     return knex(tabla).where("id", id).del();
   };
@@ -54,6 +69,7 @@ const databaseService = () => {
     usuarios,
     borrarUsuario,
     usuariosByUsername,
+    imgById,
   };
 };
 
