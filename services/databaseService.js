@@ -45,11 +45,12 @@ const databaseService = () => {
     return knex(tabla).column('email as Email', 'username as Username').where('username', username).select();
   };*/
 
+  const tabla1 = "IMAGE_PROFILE";
   const imgById = async (req, res) => {
     const id = req.params.id;
     console.log("--> " + id);
     try {
-      const img = await knex(tabla)
+      const img = await knex(tabla1)
         .column("img as Img")
         .where("id", id)
         .select();
