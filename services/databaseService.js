@@ -52,7 +52,7 @@ const databaseService = () => {
     try {
       const img = await knex(tabla1)
         .column("img as Img")
-        .where("id", id)
+        .where("id_img_pk", id)
         .select();
       console.log(img);
       return res.json(img[0]);
