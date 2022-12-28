@@ -26,6 +26,7 @@ module.exports = (app, databaseService) => {
         res.status(500).json(e);
       });
   });*/
+  app.get("/usuario/:username&:password", databaseService.userByUsernamePass);
 
   app.get("/img/:id", databaseService.imgById);
 
