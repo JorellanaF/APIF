@@ -48,11 +48,11 @@ const databaseService = () => {
   //Usuario por usuarname y pass
   const userByUsernamePass = async (req,res) => {
     const email = req.params.email;
-    const pass = req.params.password;
+    const password = req.params.password;
     try {
       const user = await knex(tabla)
       .column("email as Email", "username as Username")
-      .where({email: email, password: pass}).select();
+      .where({email: email, password: password}).select();
       return res.json(user[0]);
     } catch (e){
       return res.status(500).json(e);
