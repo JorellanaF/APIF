@@ -44,6 +44,20 @@ const databaseService = () => {
   /*const usuariosByUsername = ({username}) => {
     return knex(tabla).column('email as Email', 'username as Username').where('username', username).select();
   };*/
+  
+  //Usuario por usuarname y pass
+  const userByUsernamePass = async (req,res) => {
+    const email = req.params.email;
+    const pass = req.params.password;
+    try {
+      const user = await knex(tabla)
+      .column("email as Email", "username as Username")
+      .where({email: "email", pass: "password"}).select();
+      return res.json(user[0]);
+    } catch (e){
+      return res.status(500).json(e);
+    }
+  }
 
   const tabla1 = "IMAGE_PROFILE";
   const imgById = async (req, res) => {
@@ -71,6 +85,7 @@ const databaseService = () => {
     borrarUsuario,
     usuariosByUsername,
     imgById,
+    userByUsernamePass
   };
 };
 
