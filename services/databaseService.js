@@ -52,7 +52,7 @@ const databaseService = () => {
     try {
       const user = await knex(tabla)
       .column("email as Email", "username as Username")
-      .where({email: "email", pass: "password"}).select();
+      .where({email: email, password: pass}).select();
       return res.json(user[0]);
     } catch (e){
       return res.status(500).json(e);
