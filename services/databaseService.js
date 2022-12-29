@@ -47,8 +47,10 @@ const databaseService = () => {
   
   //Usuario por usuarname y pass
   const userByUsernamePass = async (req,res) => {
-    const email = req.params.email;
-    const pass = req.params.password;
+    const email = req.body.email;
+    const pass = req.body.password;
+    console.log("ENTREEEEO");
+    console.log(req);
     try {
       const user = await knex(tabla)
       .column("email as Email", "username as Username")
