@@ -26,7 +26,7 @@ module.exports = (app, databaseService) => {
         res.status(500).json(e);
       });
   });*/
-  app.get("/login", databaseService.userByUsernamePass);
+  app.post("/login", databaseService.userByUsernamePass);
 
   app.get("/img/:id", databaseService.imgById);
 
@@ -58,4 +58,6 @@ module.exports = (app, databaseService) => {
         res.status(500).json(e);
       });
   });
+
+  app.post("/createUser", databaseService.crearUser);
 };
